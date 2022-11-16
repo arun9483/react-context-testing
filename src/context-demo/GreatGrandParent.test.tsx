@@ -1,22 +1,22 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import App from './App';
+import GreatGrandParent from './GreatGrandParent';
 
-describe('Test App Component', () => {
+describe('Test GreatGrandParent Component', () => {
   test('page heading rendering', () => {
-    render(<App />);
+    render(<GreatGrandParent />);
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveAccessibleName(
-      'react context testing demo'
+    expect(screen.getByRole('heading', { level: 2 })).toHaveAccessibleName(
+      'this is great grand parent'
     );
   });
 
   test('render initial age', () => {
-    render(<App />);
+    render(<GreatGrandParent />);
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveAccessibleName(
-      'react context testing demo'
+    expect(screen.getByRole('heading', { level: 2 })).toHaveAccessibleName(
+      'this is great grand parent'
     );
     expect(screen.getByLabelText('grand-child-one')).toHaveTextContent(
       'age is 1'
@@ -24,10 +24,10 @@ describe('Test App Component', () => {
   });
 
   test('display updated age', () => {
-    render(<App />);
+    render(<GreatGrandParent />);
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveAccessibleName(
-      'react context testing demo'
+    expect(screen.getByRole('heading', { level: 2 })).toHaveAccessibleName(
+      'this is great grand parent'
     );
 
     expect(screen.getByLabelText('grand-parent')).toHaveTextContent('age is 1');
@@ -40,19 +40,19 @@ describe('Test App Component', () => {
       'age is 1'
     );
 
-    const button10 = screen.getByRole('button', { name: 'change age to 10' });
-    userEvent.click(button10);
+    const button30 = screen.getByRole('button', { name: 'change age to 30' });
+    userEvent.click(button30);
 
     expect(screen.getByLabelText('grand-parent')).toHaveTextContent(
-      'age is 10'
+      'age is 30'
     );
 
     expect(screen.getByLabelText('grand-child-one')).toHaveTextContent(
-      'age is 10'
+      'age is 30'
     );
 
     expect(screen.getByLabelText('grand-child-three')).toHaveTextContent(
-      'age is 10'
+      'age is 30'
     );
   });
 });
